@@ -23,6 +23,12 @@
             "ChrisJohnLeah\\BigChangeLaravel\\Tests\\": "tests/"
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/chrisjohnleah/bigchange-api"
+        }
+    ],
     "extra": {
         "laravel": {
             "providers": [
