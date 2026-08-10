@@ -1,9 +1,15 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
     "name": "chrisjohnleah/bigchange-api-laravel",
-    "description": "Laravel bridge for the BigChange REST API SDK.",
+    "description": "Laravel bridge for the BigChange REST and optional JobWatch SDK.",
     "type": "library",
     "license": "MIT",
+    "homepage": "https://github.com/chrisjohnleah/bigchange-api-laravel",
+    "keywords": ["bigchange", "jobwatch", "api", "sdk", "laravel", "saloon"],
+    "support": {
+        "issues": "https://github.com/chrisjohnleah/bigchange-api-laravel/issues",
+        "source": "https://github.com/chrisjohnleah/bigchange-api-laravel"
+    },
     "require": {
         "php": "^8.3",
         "illuminate/cache": "^11.0|^12.0|^13.0",

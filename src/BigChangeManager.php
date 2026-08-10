@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace ChrisJohnLeah\BigChangeLaravel;
 
 use ChrisJohnLeah\BigChange\BigChangeClient;
+use ChrisJohnLeah\BigChange\BigChangeJobWatchClient;
 use ChrisJohnLeah\BigChange\BigChangeTokenConnector;
 use ChrisJohnLeah\BigChange\Data\BigChangeCredentials;
+use ChrisJohnLeah\BigChange\Data\BigChangeJobWatchCredentials;
 use ChrisJohnLeah\BigChangeLaravel\Contracts\TokenStore;
 
 final readonly class BigChangeManager
@@ -23,6 +25,7 @@ final readonly class BigChangeManager
             $credentials->clientId,
             $credentials->customerId,
             $credentials->apiBaseUrl,
+            $credentials->assetManagementApiBaseUrl,
             $credentials->tokenUrl,
             $credentials->scope ?? '',
         ]));
@@ -37,5 +40,16 @@ final readonly class BigChangeManager
         }
 
         return new BigChangeClient($credentials, $token);
+    }
+
+    /**
+     * Build the optional Basic Auth JobWatch attachment client. JobWatch has
+     * a separate credential and licensing contract from the OAuth REST API.
+     *
+     * @param  array<string, mixed>  $values
+     */
+    public function jobWatchClient(array $values): BigChangeJobWatchClient
+    {
+        return new BigChangeJobWatchClient(BigChangeJobWatchCredentials::fromArray($values));
     }
 }

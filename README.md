@@ -1,7 +1,12 @@
 # BigChange API — Laravel
 
-Laravel bridge for [`chrisjohnleah/bigchange-api`](../bigchange-api), the
-framework-agnostic Saloon SDK for the BigChange REST API.
+Laravel bridge for [`chrisjohnleah/bigchange-api`](https://github.com/chrisjohnleah/bigchange-api), the
+framework-agnostic Saloon SDK for the BigChange REST API and optional JobWatch
+attachment service.
+
+```shell
+composer require chrisjohnleah/bigchange-api-laravel
+```
 
 The bridge provides the `BigChange` facade, automatic service-provider
 discovery, a cache-backed token store, and a manager that builds a
@@ -19,7 +24,17 @@ $client = BigChange::client([
 ]);
 
 $jobs = $client->jobs(pageSize: 1000);
+$assets = $client->assetManagementClient()->assets(pageSize: 2000);
+
+$jobWatch = BigChange::jobWatchClient([
+    'jobwatch_username' => $username,
+    'jobwatch_password' => $password,
+    'jobwatch_company_key' => $companyKey,
+]);
 ```
+
+JobWatch uses separate Basic Auth credentials and a company-key header. Only
+use it when the customer's BigChange account has the JobWatch service enabled.
 
 Publish the optional cache configuration with:
 
